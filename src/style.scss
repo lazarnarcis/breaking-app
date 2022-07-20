@@ -1,0 +1,25 @@
+.cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    margin: 10px;
+    width: 75%;
+}
+
+.input-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card { 
+    margin: 10px;
+}
+
+h1 {
+    text-align: center;
+}
