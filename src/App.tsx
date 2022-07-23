@@ -8,9 +8,15 @@ export default function App() {
     const [apiLink, setApiLink] = React.useState("https://www.breakingbadapi.com/api/characters/");
     const [usersMap, setUsersMap] = React.useState<any[]>([]);
     const [text, setText] = React.useState<string>("Sort Users");
+    const [hideLoader, setHideLoader] = React.useState<boolean>(false);
 
     React.useEffect(() => {
-        axios.get(apiLink).then(data => setUsers(data.data));
+        const getData = async () => {
+            const { data } = await axios.get(apiLink);
+            setUsers(data);
+            setHideLoader(true);
+        }
+        getData();
     }, [apiLink]);
 
     React.useEffect(() => {
@@ -54,7 +60,7 @@ export default function App() {
 
     return (
         <div>
-            <h1>Breaking Bad App</h1>
+            <p className="fs-1">Breaking Bad App</p>
             <div className="input-element">
                 <div className="input-group mb-3">
                     <input type="text" placeholder="Name..." className="form-control" aria-label="Text input with dropdown button" ref={input} onChange={onChangeHandler} />
@@ -68,7 +74,10 @@ export default function App() {
                     </ul>
                 </div>
             </div>
-            <div className="cards">{usersMap}</div>
+            <div className="cards">
+                <div className="fs-2" style={{ display: hideLoader ? "none" : "block" }}>Loading...</div>
+                {usersMap}
+            </div>
         </div>
     );
 }
