@@ -16,7 +16,7 @@ export default function App() {
             setUsers(data);
             setHideLoader(true);
         }
-        getData();
+        getData().catch(console.error);
     }, [apiLink]);
 
     React.useEffect(() => {
